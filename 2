@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <vector>
+using namespace std;
+void gain(){
+}
+
+vector<vector <string>> getRealSet(vector<vector<string>> &tmp_set,int shift_vert,int shift_hor){
+    vector <vector<string>> set;
+    for(int i=shift_vert;i<tmp_set.size();i++){
+        vector<string> tmp;
+        for(int j=shift_hor;j<tmp_set[shift_vert].size();j++){
+            tmp.push_back(tmp_set[i][j]);
+        }
+        set.push_back(tmp);
+    }  
+    return set;
+}
+int main(){
+    vector<vector<string>>set_tmp;    
+    ifstream file;
+    file.open("tab.csv");
+    string line;
+    while( getline(file,line)){
+        stringstream str(line);
+        string tmp;
+        vector<string>tmp_vec;
+        while(getline(str,tmp,','))
+            tmp_vec.push_back(tmp);
+        set_tmp.push_back(tmp_vec);
+    }
+    vector <vector<string>> set=getRealSet(set_tmp,3,1);
+    cout<<set;
+    for(int i=0;i<set.size();i++){
+        for(int j=0;j<set[4].size();j++){
+            cout<<set[i][j]<<" ";
+        }
+    cout<<endl;
+    }
+
+}
